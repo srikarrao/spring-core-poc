@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	   					   http://www.springframework.org/schema/beans/spring-beans.xsd"
+	default-init-method="myInit" default-destroy-method="cleanup">
+
+	<!-- Reference beans begin -->
+	<bean id="init_triangle" class="org.poc.techs.spring.core2.programs.Triangle_Init">
+		<!-- init-method="myInit" destroy-method="cleanup" -->
+		<property name="pointA" ref="i0" />
+		<property name="pointB" ref="i1" />
+		<property name="pointC" ref="i2" />
+	</bean>
+
+	<bean id="i0" class="org.poc.techs.spring.core2.programs.Point">
+		<property name="x" value="0" />
+		<property name="y" value="0" />
+	</bean>
+
+	<bean id="i1" class="org.poc.techs.spring.core2.programs.Point">
+		<property name="x" value="-20" />
+		<property name="y" value="0" />
+	</bean>
+
+	<bean id="i2" class="org.poc.techs.spring.core2.programs.Point">
+		<property name="x" value="20" />
+		<property name="y" value="0" />
+	</bean>
+	<!-- Reference beans end -->
+
+</beans>

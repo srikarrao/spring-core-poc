@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	   					   http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Bean Definition Inheritance begin -->
+	<bean id="parentTriangle" class="org.poc.techs.spring.core2.programs.TrianglePointer">
+		<property name="pointA" ref="p0" />
+	</bean>
+	<bean id="childTriangle1" class="org.poc.techs.spring.core2.programs.TrianglePointer"
+		parent="parentTriangle">
+		<property name="pointB" ref="p1" />
+	</bean>
+	<bean id="childTriangle2" class="org.poc.techs.spring.core2.programs.TrianglePointer"
+		parent="parentTriangle">
+		<property name="pointB" ref="p1" />
+		<property name="pointC" ref="p2" />
+	</bean>
+	<!-- Bean Definition Inheritance ends -->
+
+	<!-- Reference beans begin -->
+	<bean id="trianglePointer" class="org.poc.techs.spring.core2.programs.TrianglePointer">
+		<property name="pointA" ref="p0" />
+		<property name="pointB" ref="p1" />
+		<property name="pointC" ref="p2" />
+	</bean>
+
+	<bean id="p0" class="org.poc.techs.spring.core2.programs.Point">
+		<property name="x" value="0" />
+		<property name="y" value="0" />
+	</bean>
+
+	<bean id="p1" class="org.poc.techs.spring.core2.programs.Point">
+		<property name="x" value="-20" />
+		<property name="y" value="0" />
+	</bean>
+
+	<bean id="p2" class="org.poc.techs.spring.core2.programs.Point">
+		<property name="x" value="20" />
+		<property name="y" value="0" />
+	</bean>
+	<!-- Reference beans end -->
+
+	<!-- Bean Definition Inheritance using List begin -->
+	<bean id="listParent" class="org.poc.techs.spring.core2.programs.ListTriangle"
+		abstract="true">
+		<property name="pointsList">
+			<list>
+				<ref bean="p0" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="listChild1" class="org.poc.techs.spring.core2.programs.ListTriangle"
+		parent="listParent">
+		<property name="pointsList">
+			<list merge="true">
+				<ref bean="p1" />
+				<ref bean="p2" />
+			</list>
+		</property>
+	</bean>
+	<!-- Bean Definition Inheritance using List ends -->
+</beans>

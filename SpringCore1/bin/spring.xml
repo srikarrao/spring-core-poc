@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	   					   http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- Conventional bean: property, constructor -->
+	<bean id="triangle" class="org.poc.techs.spring.core1.programs.Triangle">
+		<!-- <property name="type" value="Equilateral" /> -->
+		<constructor-arg type="java.lang.String" value="Equilateral" />
+	</bean>
+
+	<!-- Reference beans begin -->
+	<bean id="trianglePointer" class="org.poc.techs.spring.core1.programs.TrianglePointer">
+		<property name="pointA" ref="p0" />
+		<property name="pointB" ref="p1" />
+		<property name="pointC" ref="p2" />
+	</bean>
+
+	<bean id="p0" class="org.poc.techs.spring.core1.programs.Point">
+		<property name="x" value="0" />
+		<property name="y" value="0" />
+	</bean>
+
+	<bean id="p1" class="org.poc.techs.spring.core1.programs.Point">
+		<property name="x" value="-20" />
+		<property name="y" value="0" />
+	</bean>
+
+	<bean id="p2" class="org.poc.techs.spring.core1.programs.Point">
+		<property name="x" value="20" />
+		<property name="y" value="0" />
+	</bean>
+	<!-- Reference beans end -->
+
+	<!-- Inner beans -->
+	<bean id="inner" class="org.poc.techs.spring.core1.programs.TriangleInnerBean">
+		<property name="pointAInner">
+			<bean class="org.poc.techs.spring.core1.programs.Point">
+				<property name="x" value="100" />
+				<property name="y" value="-100" />
+			</bean>
+		</property>
+		<property name="pointBInner">
+			<bean class="org.poc.techs.spring.core1.programs.Point">
+				<property name="x" value="50" />
+				<property name="y" value="-50" />
+			</bean>
+		</property>
+		<property name="pointCInner">
+			<bean class="org.poc.techs.spring.core1.programs.Point">
+				<property name="x" value="25" />
+				<property name="y" value="-25" />
+			</bean>
+		</property>
+	</bean>
+
+
+	<!-- Collection beans -->
+	<bean id="listTriangle" class="org.poc.techs.spring.core1.programs.ListTriangle">
+		<property name="pointsList">
+			<list>
+				<ref bean="p0" />
+				<ref bean="p1" />
+				<ref bean="p2" />
+			</list>
+		</property>
+	</bean>
+
+
+	<!-- Autowiring begins -->
+
+	<bean id="trianglePointer2" class="org.poc.techs.spring.core1.programs.TrianglePointer"
+		autowire="byName">
+	</bean>
+
+	<bean id="pointA" class="org.poc.techs.spring.core1.programs.Point">
+		<property name="x" value="99" />
+		<property name="y" value="-99" />
+	</bean>
+
+	<bean id="pointB" class="org.poc.techs.spring.core1.programs.Point">
+		<property name="x" value="98" />
+		<property name="y" value="-98" />
+	</bean>
+
+	<bean id="pointC" class="org.poc.techs.spring.core1.programs.Point">
+		<property name="x" value="97" />
+		<property name="y" value="-97" />
+	</bean>
+
+	<!-- Autowiring ends -->
+</beans>
